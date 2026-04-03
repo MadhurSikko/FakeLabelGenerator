@@ -1,0 +1,6 @@
+sys_instruction = (
+        "You are a helpful assistant. Respond ONLY in JSON format. "
+        "Include these keys: 'is_data_valid' (boolean), 'detected_errors' (list of strings)."
+    )
+
+user_content = f"Analyze this food label data: {json.dumps(targeted_data)}"
