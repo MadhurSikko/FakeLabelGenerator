@@ -1,3 +1,6 @@
+Gemini 3.1 Pro
+
+
 Loaded 50 records from 'fssai_benchmark_dataset_1error.jsonl'
 Model  : gemini-3.1-pro-preview
 MIME   : application/json
@@ -277,3 +280,14 @@ Detection recall                     : 100.0%
   Fully missed                      : 26
   Detection recall                  : 7.3%
 ============================================================================
+
+
+Evaluation Metrics
+=============================================================================
+Test Phase                | Detection Rate  | Error Recall    | ID Accuracy
+-------------------------------------------------------------------------------
+Spelling: 1 Error         |        100.00 % |        100.00 % |       60.49 %
+Spelling: 2 Errors        |        100.00 % |         92.86 % |       75.21 %
+Spelling: 3 Errors        |        100.00 % |         87.07 % |       80.50 %
+Fictitious Compounds      |        100.00 % |        100.00 % |       97.92 %
+INS Codes Scrambling      |         27.78 % |          8.67 % |      100.00 %

@@ -1,0 +1,6 @@
+Test Phase,Detection Rate (%),Error Recall (%),Identification Accuracy (%)
+Spelling: 1 Error,100.0,100.0,60.49
+Spelling: 2 Errors,100.0,92.86,75.21
+Spelling: 3 Errors,100.0,87.07,80.5
+Fictitious Compounds,100.0,100.0,97.92
+INS Codes Scrambling,27.78,8.67,100.0
