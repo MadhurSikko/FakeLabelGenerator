@@ -5,20 +5,20 @@ import requests
 CUTOFF_YEAR = 2024
 
 
-def get_diverse_2024_barcodes(target_count=50):
+def get_diverse_reliable_2024_barcodes(target_count=50):
     print(
-        f"Fetching {target_count} recent, diverse Indian products from Open Food Facts..."
+        f"Fetching {target_count} recent, highly reliable, diverse Indian products from Open Food Facts..."
     )
 
     # Using the OFF search API, targeting India, sorted by newest edits
     url = "https://in.openfoodfacts.org/cgi/search.pl"
     params = {
         "action": "process",
-        "sort_by": "popularity",  # <-- Sorts by most scanned/famous products first
-        "page_size": 500,  # <-- Increased to 500 so we have a bigger pool to filter
+        "sort_by": "popularity",
+        "page_size": 1000,  # Increased to 1000 because strict reliability filters will reject many products
         "json": "true",
     }
-    headers = {"User-Agent": "FSSAI_AI_Benchmark_Research - Python - Version 1.4"}
+    headers = {"User-Agent": "FSSAI_AI_Benchmark_Research - Python - Version 1.5"}
 
     try:
         response = requests.get(url, params=params, headers=headers)
@@ -33,6 +33,8 @@ def get_diverse_2024_barcodes(target_count=50):
                 break
 
             barcode = p.get("code")
+            if not barcode:
+                continue
 
             # 1. Enforce the 2024 Cutoff
             last_modified_unix = p.get("last_modified_t", 0)
@@ -44,11 +46,34 @@ def get_diverse_2024_barcodes(target_count=50):
             if last_modified_year < CUTOFF_YEAR:
                 continue
 
-            # 2. Enforce Data Quality (Must have ingredients and nutrition facts for your LLM)
+            # 2. Basic Data Presence Check
             if not p.get("ingredients_text") or not p.get("nutriments"):
                 continue
 
-            # 3. Enforce Variety (Limit to 3 items per main category)
+            # --- NEW: STRICT RELIABILITY CHECKS ---
+            states = p.get("states_tags", [])
+
+            # 3. Check OFF Completion States
+            # Ensure the community or manufacturer has marked these sections as fully complete
+            if (
+                "en:nutrition-facts-completed" not in states
+                or "en:ingredients-completed" not in states
+            ):
+                continue
+
+            # 4. Check for Data Quality Errors
+            # OFF runs automated checks (e.g., nutrition values adding up to > 100g). Exclude if it fails.
+            errors = p.get("data_quality_errors_tags", [])
+            if errors:
+                continue
+
+            # 5. Require Photographic Proof (Highly Recommended for Benchmarks)
+            # This ensures there is a picture of the label to back up the text data.
+            if not p.get("image_ingredients_url") or not p.get("image_nutrition_url"):
+                continue
+            # --------------------------------------
+
+            # 6. Enforce Variety (Limit to 3 items per main category)
             main_category = p.get("main_category", "unknown")
             if (
                 category_tracker.get(main_category, 0) >= 3
@@ -56,7 +81,7 @@ def get_diverse_2024_barcodes(target_count=50):
             ):
                 continue
 
-            # If it passes all checks, add it to our list!
+            # If it passes all strict checks, add it to our list!
             valid_barcodes.append(barcode)
             category_tracker[main_category] = category_tracker.get(main_category, 0) + 1
 
@@ -68,9 +93,9 @@ def get_diverse_2024_barcodes(target_count=50):
 
 
 # --- Run the fetcher ---
-fresh_barcodes = get_diverse_2024_barcodes(50)
+fresh_barcodes = get_diverse_reliable_2024_barcodes(50)
 print(
-    f"\nSuccessfully gathered {len(fresh_barcodes)} valid barcodes updated in {CUTOFF_YEAR} or later."
+    f"\nSuccessfully gathered {len(fresh_barcodes)} highly reliable barcodes updated in {CUTOFF_YEAR} or later."
 )
 print("Copy this list into your main script:\n")
 print(fresh_barcodes)

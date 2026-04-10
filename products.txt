@@ -1,31 +1,3 @@
-Baked Goods & Biscuits (Tests leavening agents, emulsifiers, and added sugars)
-Britannia Good Day Cashew Cookies (Britannia) - Tests how the AI parses nut allergens and butter/oil blends.
-Britannia NutriChoice Digestive Biscuits (Britannia) - Good for testing dietary fiber claims and complex carbohydrate breakdowns.
-Ready-to-Cook & Instant Foods (Tests heavy use of functional classes)
-Maggi 2-Minute Noodles (Masala) (Nestle) - The holy grail of ingredient lists. It tests the AI on flavor enhancers like INS 627 and INS 631, thickeners, and palm oil.
-MTR Ready-To-Eat Palak Paneer (MTR Foods/Orkla) - Tests the AI on retort-pouch packaging labels and sterilized food regulations without heavy preservatives.
-Condiments, Sauces & Spreads (Tests pure preservatives and stabilizers)
-Knorr Classic Thick Tomato Soup (HUL) - Packed with thickeners, anti-caking agents, and dehydrated vegetables.
-Amul Pasteurized Butter (GCMMF) - A very short, straightforward dairy label (just butter, salt, and annatto color) to see if the AI overcomplicates simple items.
-Beverages (Tests artificial sweeteners, synthetic colors, and caffeine warnings)
-
-Sunfeast Yippee! Magic Masala Noodles (ITC) - A strong comparison point to Maggi with slightly different vegetable and spice powder compositions.
-Sunfeast Dark Fantasy Choco Fills (ITC) - Contains complex emulsifiers (like INS 322) and artificial flavoring substances.
-Bingo! Mad Angles Tomato Mischief (ITC) - Excellent for testing how the AI handles "permitted natural colors."
-Haldiram's Aloo Bhujia (Haldiram's) - A baseline for traditional Indian snacks with standardized regional ingredients.
-Kurkure Masala Munch (PepsiCo) - Contains specific acidity regulators and flavor enhancers.
-Lay's India's Magic Masala (PepsiCo) - Great for testing spice extracts and complex flavoring agents.
-Parle-G Original Glucose Biscuits (Parle) - A perfect, simple baseline label with minimal complex additives.
-Kissan Fresh Tomato Ketchup (HUL) - The standard for testing Class II preservatives like Sodium Benzoate (INS 211).
-Thums Up (Coca-Cola India) - Tests the AI on mandatory caffeine warnings and caramel color (INS 150d).
-Slice Mango Drink (PepsiCo) - Great for testing the distinction between actual fruit pulp percentage and added synthetic flavors.
-Real Fruit Power Mixed Fruit Juice (Dabur) - Tests the AI's ability to read complex, multi-fruit reconstitution ratios and acidity regulators
-Paper Boat Aamras (Hector Beverages) - A good test for "clean label" claims that still use specific FSSAI-approved stabilizers.
-Cadbury Dairy Milk Chocolate (Mondelez India) - The benchmark for testing cocoa butter equivalents, milk solid percentages, and PGPR (INS 476) emulsifiers.
-Nestle KitKat (Nestle) - Tests the AI on separating the wafer ingredients from the chocolate coating ingredients within the same label.
-
-Confectionery & Desserts (Tests complex fats, cocoa solids, and allergens)
-
 [
     "8901719134845",
     "8901719134852",
