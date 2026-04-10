@@ -1,8 +1,5 @@
-Gemini 3.1 Pro
-
-
 Loaded 50 records from 'fssai_benchmark_dataset_1error.jsonl'
-Model  : gemini-3.1-pro-preview
+Model  : gemini-3-flash-preview
 MIME   : application/json
 
 Output written to: fssai_benchmark_dataset_1error_gemini_reviewed.jsonl
@@ -56,7 +53,7 @@ SPELLING ERROR DETECTION STATS
 41    8901030921797                  1         1   all found ✓
 42    8901719135118                  1         1   all found ✓
 43    3948764061257                  1         1   all found ✓
-44    89080153                       1         1   all found ✓
+44    89080153                       1         2   over-reported (2 found, 1 injected)
 45    8901764032905                  1         1   all found ✓
 46    8904272600291                  1         1   all found ✓
 47    8901764092305                  1         1   all found ✓
@@ -64,20 +61,18 @@ SPELLING ERROR DETECTION STATS
 49    8901262260121                  1         1   all found ✓
 50    8901491361026                  1         6   over-reported (6 found, 1 injected)
 -----------------------------------------------------------------
-TOTAL                               49        81
+TOTAL                               49        82
 
 Records processed              : 50
 Records with injected errors   : 49
 Total injected spelling errors : 49
-Total detected by Gemini       : 81
-Detection recall               : 165.3%
+Total detected by Gemini       : 82
+Detection recall               : 167.3%
 =================================================================
 
 Loaded 50 records from 'fssai_benchmark_dataset_2errors.jsonl'
-Model  : gemini-3.1-pro-preview
+Model  : gemini-3-flash-preview
 MIME   : application/json
-
-Output written to: fssai_benchmark_dataset_2errors_gemini_reviewed.jsonl
 
 =================================================================
 SPELLING ERROR DETECTION STATS
@@ -102,7 +97,7 @@ SPELLING ERROR DETECTION STATS
 15    7622202225512                  2         6   over-reported (6 found, 2 injected)
 16    8904043901015                  2         2   all found ✓
 17    8901058000290                  2         4   over-reported (4 found, 2 injected)
-18    3948764032912                  2         1   partial (1/2)
+18    3948764032912                  2         0   MISSED ALL
 19    8901063092853                  2         3   over-reported (3 found, 2 injected)
 20    8906017290040                  2         2   all found ✓
 21    8901719129988                  2         2   all found ✓
@@ -123,16 +118,27 @@ SPELLING ERROR DETECTION STATS
 36    8906010501570                  2         2   all found ✓
 37    8996001312506                  2         2   all found ✓
 38    8901058005233                  2         2   all found ✓
-39    8902080104581                  2         2   all found ✓ls
+39    8902080104581                  2         2   all found ✓
 40    8901063023901                  2         2   all found ✓
 41    8901030921797                  2         2   all found ✓
+42    8901719135118                  2         1   partial (1/2)
 43    3948764061257                  2         1   partial (1/2)
-44    89080153                       2         2   all found ✓
+44    89080153                       2         0   MISSED ALL
+45    8901764032905                  2         2   all found ✓
+46    8904272600291                  2         2   all found ✓
+47    8901764092305                  2         2   all found ✓
+48    8901595862962                  2         3   over-reported (3 found, 2 injected)
+49    8901262260121                  2         1   partial (1/2)
+50    8901491361026                  2         7   over-reported (7 found, 2 injected)
+-----------------------------------------------------------------
+TOTAL                               98       118
 
+Records processed              : 50
+Records with injected errors   : 49
 Total injected spelling errors : 98
-Total detected by Gemini       : 121
-
-
+Total detected by Gemini       : 118
+Detection recall               : 120.4%
+=================================================================
 
 =================================================================
 SPELLING ERROR DETECTION STATS
@@ -150,7 +156,7 @@ SPELLING ERROR DETECTION STATS
 8     8901063162914                  3         4   over-reported (4 found, 3 injected)
 9     8906010500559                  3         3   all found ✓
 10    8901764042911                  3         3   all found ✓
-11    8906010502232                  3         4   over-reported (4 found, 3 injected)
+11    8906010502232                  3         0   MISSED ALL
 12    8906010500900                  3         3   all found ✓
 13    8906010500023                  3         2   partial (2/3)
 14    8901764032912                  3         2   partial (2/3)
@@ -158,7 +164,7 @@ SPELLING ERROR DETECTION STATS
 16    8904043901015                  3         3   all found ✓
 17    8901058000290                  3         4   over-reported (4 found, 3 injected)
 18    3948764032912                  3         1   partial (1/3)
-19    8901063092853                  3         3   all found ✓
+19    8901063092853                  3         2   partial (2/3)
 20    8906017290040                  3         3   all found ✓
 21    8901719129988                  3         3   all found ✓
 22    8901030921667                  3         3   all found ✓
@@ -191,14 +197,85 @@ SPELLING ERROR DETECTION STATS
 49    8901262260121                  3         2   partial (2/3)
 50    8901491361026                  3         8   over-reported (8 found, 3 injected)
 -----------------------------------------------------------------
-TOTAL                              147       159
+TOTAL                              147       154
 
 Records processed              : 50
 Records with injected errors   : 49
 Total injected spelling errors : 147
-Total detected by Gemini       : 159
-Detection recall               : 108.2%
+Total detected by Gemini       : 154
+Detection recall               : 104.8%
 =================================================================
+
+============================================================================
+INS CODE MISMATCH DETECTION — OVERVIEW
+============================================================================
+
+#     Product ID              Injected  Detected  Result
+----------------------------------------------------------------------------
+1     8901719134845                  3         1  partial  (1/3)
+2     8901719134852                  0         0  no INS codes injected
+3     8901063139329                  7         2  partial  (2/7)
+4     8902080000227                  8         1  partial  (1/8)
+5     8906010500764                  5         0  MISSED ✗
+6     8901063093522                  2         1  partial  (1/2)
+7     8901058017687                  4         1  partial  (1/4)
+8     8901063162914                  5         1  partial  (1/5)
+9     8906010500559                  0         0  no INS codes injected
+10    8901764042911                  2         0  MISSED ✗
+11    8906010502232                  5         0  MISSED ✗
+12    8906010500900                  8         1  partial  (1/8)
+13    8906010500023                  0         0  no INS codes injected
+14    8901764032912                  4         0  MISSED ✗
+15    7622202225512                  0         0  no INS codes injected
+16    8904043901015                  1         0  MISSED ✗
+17    8901058000290                  8         1  partial  (1/8)
+18    3948764032912                  0         0  no INS codes injected
+19    8901063092853                  3         1  partial  (1/3)
+20    8906017290040                  0         0  no INS codes injected
+21    8901719129988                  3         0  MISSED ✗
+22    8901030921667                  4         0  MISSED ✗
+23    8901764092206                  4         0  MISSED ✗
+24    8901030897542                  4         0  MISSED ✗
+25    8901764082405                  0         0  no INS codes injected
+26    8906010500337                  0         0  no INS codes injected
+27    8901063029255                  6         1  partial  (1/6)
+28    8901491100519                  4         0  MISSED ✗
+29    8901262010016                  0         0  no INS codes injected
+30    8901262200196                  1         0  MISSED ✗
+31    8901764032707                  3         0  MISSED ✗
+32    8906010502294                  5         0  MISSED ✗
+33    8906010500078                  0         0  no INS codes injected
+34    8901491366052                  4         2  partial  (2/4)
+35    8901719135248                  0         0  no INS codes injected
+36    8906010501570                  9         0  MISSED ✗
+37    8996001312506                  5         2  partial  (2/5)
+38    8901058005233                  1         0  MISSED ✗
+39    8902080104581                  3         0  MISSED ✗
+40    8901063023901                  3         1  partial  (1/3)
+41    8901030921797                  4         0  MISSED ✗
+42    8901719135118                  0         0  no INS codes injected
+43    3948764061257                  0         0  no INS codes injected
+44    89080153                       3         0  MISSED ✗
+45    8901764032905                  4         0  MISSED ✗
+46    8904272600291                  1         0  MISSED ✗
+47    8901764092305                  4         1  partial  (1/4)
+48    8901595862962                  5         0  MISSED ✗
+49    8901262260121                  0         0  no INS codes injected
+50    8901491361026                  5         0  MISSED ✗
+----------------------------------------------------------------------------
+                                    TOTAL       150        17
+
+  Records processed                 : 50
+  Records with injected INS errors  : 36
+  Records with no INS injection     : 14
+
+  Total injected INS mismatches     : 150
+  Total detected by Gemini          : 17
+  Fully caught (all errors found)   : 0
+  Partially caught                  : 14
+  Fully missed                      : 22
+  Detection recall                  : 11.3%
+============================================================================
 
 ========================================================================
 FICTITIOUS COMPOUND DETECTION STATS
@@ -211,7 +288,7 @@ FICTITIOUS COMPOUND DETECTION STATS
 3     8901063139329          potassium lactobionate                   1  CAUGHT ✓
 4     8902080000227          diammonium malonate                      1  CAUGHT ✓
 5     8906010500764          disodium gluconate                       1  CAUGHT ✓
-6     8901063093522          carboxyethyl methylcellulose             1  CAUGHT ✓
+6     8901063093522          carboxyethyl methylcellulose             2  CAUGHT ✓
 7     8901058017687          propylated amylopectin itaconate         1  CAUGHT ✓
 8     8901063162914          calcium myristoyl fumarate               1  CAUGHT ✓
 9     8906010500559          methyl glutaric acid                     1  CAUGHT ✓
@@ -220,7 +297,7 @@ FICTITIOUS COMPOUND DETECTION STATS
 12    8906010500900          magnesium lauroyl succinate              1  CAUGHT ✓
 13    8906010500023          dimethyl lauric acid                     1  CAUGHT ✓
 14    8901764032912          calcium isovalerate                      1  CAUGHT ✓
-15    7622202225512          carboxyethylethylcellulose               1  CAUGHT ✓
+15    7622202225512          carboxyethylethylcellulose               2  CAUGHT ✓
 16    8904043901015          methyl capric acid                       1  CAUGHT ✓
 17    8901058000290          fumaric acid esters of mono- ...         1  CAUGHT ✓
 18    3948764032912          —                                        0  not injected (skipped)
@@ -268,24 +345,10 @@ Detection recall                     : 100.0%
 ========================================================================
 
 
-
-  Records processed                 : 50
-  Records with injected INS errors  : 36
-  Records with no INS injection     : 14
-
-  Total injected INS mismatches     : 150
-  Total detected by Gemini          : 11
-  Fully caught (all errors found)   : 0
-  Partially caught                  : 10
-  Fully missed                      : 26
-  Detection recall                  : 7.3%
-============================================================================
-
-
 Test Phase                | Detection Rate  | Recall     | False Negative  | ID Accuracy
 ----------------------------------------------------------------------------------------
-Spelling: 1 Error         |        100.00 % |   100.00 % |          0.00 % |       60.49 %
-Spelling: 2 Errors        |        100.00 % |    92.86 % |          7.14 % |       75.21 %
-Spelling: 3 Errors        |        100.00 % |    87.07 % |         12.93 % |       80.50 %
-Fictitious Compounds      |        100.00 % |   100.00 % |          0.00 % |       97.92 %
-INS Codes Scrambling      |         27.78 % |     8.67 % |         91.33 % |      100.00 %
+Spelling: 1 Error         |        100.00 % |   100.00 % |          0.00 % |       59.76 %
+Spelling: 2 Errors        |         95.92 % |    90.82 % |          9.18 % |       75.42 %
+Spelling: 3 Errors        |         97.96 % |    84.35 % |         15.65 % |       80.52 %
+Fictitious Compounds      |        100.00 % |   100.00 % |          0.00 % |       94.00 %
+INS Codes Scrambling      |         38.89 % |    12.00 % |         88.00 % |       94.12 %
