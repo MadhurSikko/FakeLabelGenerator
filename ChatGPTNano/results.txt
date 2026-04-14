@@ -1,9 +1,3 @@
-Loaded 50 records from 'fssai_benchmark_dataset_1error.jsonl'
-Model  : gemini-3-flash-preview
-MIME   : application/json
-
-Output written to: fssai_benchmark_dataset_1error_gemini_reviewed.jsonl
-
 =================================================================
 SPELLING ERROR DETECTION STATS
 =================================================================
@@ -11,41 +5,41 @@ SPELLING ERROR DETECTION STATS
 #     Product ID              Injected  Detected Status
 -----------------------------------------------------------------
 1     8901719134845                  1         1   all found ✓
-2     8901719134852                  1         2   over-reported (2 found, 1 injected)
+2     8901719134852                  1         0   MISSED ALL
 3     8901063139329                  1         7   over-reported (7 found, 1 injected)
 4     8902080000227                  1         2   over-reported (2 found, 1 injected)
-5     8906010500764                  1         1   all found ✓
-6     8901063093522                  1         3   over-reported (3 found, 1 injected)
-7     8901058017687                  1         2   over-reported (2 found, 1 injected)
-8     8901063162914                  1         2   over-reported (2 found, 1 injected)
-9     8906010500559                  1         1   all found ✓
+5     8906010500764                  1         2   over-reported (2 found, 1 injected)
+6     8901063093522                  1         2   over-reported (2 found, 1 injected)
+7     8901058017687                  1         3   over-reported (3 found, 1 injected)
+8     8901063162914                  1         4   over-reported (4 found, 1 injected)
+9     8906010500559                  1         2   over-reported (2 found, 1 injected)
 10    8901764042911                  1         1   all found ✓
 11    8906010502232                  1         2   over-reported (2 found, 1 injected)
 12    8906010500900                  1         1   all found ✓
-13    8906010500023                  1         1   all found ✓
+13    8906010500023                  1         2   over-reported (2 found, 1 injected)
 14    8901764032912                  1         1   all found ✓
 15    7622202225512                  1         5   over-reported (5 found, 1 injected)
 16    8904043901015                  1         1   all found ✓
 17    8901058000290                  1         3   over-reported (3 found, 1 injected)
-18    3948764032912                  1         1   all found ✓
-19    8901063092853                  1         2   over-reported (2 found, 1 injected)
+18    3948764032912                  1         0   MISSED ALL
+19    8901063092853                  1         1   all found ✓
 20    8906017290040                  1         1   all found ✓
-21    8901719129988                  1         1   all found ✓
+21    8901719129988                  1         2   over-reported (2 found, 1 injected)
 22    8901030921667                  1         1   all found ✓
 23    8901764092206                  1         1   all found ✓
-24    8901030897542                  1         3   over-reported (3 found, 1 injected)
+24    8901030897542                  1         2   over-reported (2 found, 1 injected)
 25    8901764082405                  1         1   all found ✓
 26    8906010500337                  0         0   clean (no errors injected)
-27    8901063029255                  1         2   over-reported (2 found, 1 injected)
+27    8901063029255                  1         1   all found ✓
 28    8901491100519                  1         2   over-reported (2 found, 1 injected)
 29    8901262010016                  1         1   all found ✓
 30    8901262200196                  1         1   all found ✓
-31    8901764032707                  1         1   all found ✓
+31    8901764032707                  1         2   over-reported (2 found, 1 injected)
 32    8906010502294                  1         1   all found ✓
 33    8906010500078                  1         1   all found ✓
 34    8901491366052                  1         3   over-reported (3 found, 1 injected)
 35    8901719135248                  1         1   all found ✓
-36    8906010501570                  1         1   all found ✓
+36    8906010501570                  1         2   over-reported (2 found, 1 injected)
 37    8996001312506                  1         1   all found ✓
 38    8901058005233                  1         1   all found ✓
 39    8902080104581                  1         1   all found ✓
@@ -56,23 +50,20 @@ SPELLING ERROR DETECTION STATS
 44    89080153                       1         2   over-reported (2 found, 1 injected)
 45    8901764032905                  1         1   all found ✓
 46    8904272600291                  1         1   all found ✓
-47    8901764092305                  1         1   all found ✓
+47    8901764092305                  1         2   over-reported (2 found, 1 injected)
 48    8901595862962                  1         2   over-reported (2 found, 1 injected)
 49    8901262260121                  1         1   all found ✓
-50    8901491361026                  1         6   over-reported (6 found, 1 injected)
+50    8901491361026                  1         4   over-reported (4 found, 1 injected)
 -----------------------------------------------------------------
-TOTAL                               49        82
+TOTAL                               49        83
 
 Records processed              : 50
 Records with injected errors   : 49
 Total injected spelling errors : 49
-Total detected by Gemini       : 82
-Detection recall               : 167.3%
+Total detected by ChatGPT      : 83
+Detection recall               : 169.4%
 =================================================================
 
-Loaded 50 records from 'fssai_benchmark_dataset_2errors.jsonl'
-Model  : gemini-3-flash-preview
-MIME   : application/json
 
 =================================================================
 SPELLING ERROR DETECTION STATS
@@ -81,38 +72,38 @@ SPELLING ERROR DETECTION STATS
 #     Product ID              Injected  Detected Status
 -----------------------------------------------------------------
 1     8901719134845                  2         2   all found ✓
-2     8901719134852                  2         2   all found ✓
-3     8901063139329                  2         8   over-reported (8 found, 2 injected)
+2     8901719134852                  2         0   MISSED ALL
+3     8901063139329                  2         7   over-reported (7 found, 2 injected)
 4     8902080000227                  2         3   over-reported (3 found, 2 injected)
 5     8906010500764                  2         2   all found ✓
-6     8901063093522                  2         4   over-reported (4 found, 2 injected)
-7     8901058017687                  2         2   all found ✓
-8     8901063162914                  2         3   over-reported (3 found, 2 injected)
-9     8906010500559                  2         2   all found ✓
-10    8901764042911                  2         2   all found ✓
-11    8906010502232                  2         2   all found ✓
+6     8901063093522                  2         2   all found ✓
+7     8901058017687                  2         3   over-reported (3 found, 2 injected)
+8     8901063162914                  2         4   over-reported (4 found, 2 injected)
+9     8906010500559                  2         1   partial (1/2)
+10    8901764042911                  2         3   over-reported (3 found, 2 injected)
+11    8906010502232                  2         3   over-reported (3 found, 2 injected)
 12    8906010500900                  2         2   all found ✓
-13    8906010500023                  2         2   all found ✓
-14    8901764032912                  2         2   all found ✓
-15    7622202225512                  2         6   over-reported (6 found, 2 injected)
+13    8906010500023                  2         4   over-reported (4 found, 2 injected)
+14    8901764032912                  2         4   over-reported (4 found, 2 injected)
+15    7622202225512                  2         7   over-reported (7 found, 2 injected)
 16    8904043901015                  2         2   all found ✓
 17    8901058000290                  2         4   over-reported (4 found, 2 injected)
-18    3948764032912                  2         0   MISSED ALL
+18    3948764032912                  2         1   partial (1/2)
 19    8901063092853                  2         3   over-reported (3 found, 2 injected)
-20    8906017290040                  2         2   all found ✓
-21    8901719129988                  2         2   all found ✓
-22    8901030921667                  2         2   all found ✓
-23    8901764092206                  2         2   all found ✓
-24    8901030897542                  2         3   over-reported (3 found, 2 injected)
+20    8906017290040                  2         3   over-reported (3 found, 2 injected)
+21    8901719129988                  2         1   partial (1/2)
+22    8901030921667                  2         3   over-reported (3 found, 2 injected)
+23    8901764092206                  2         3   over-reported (3 found, 2 injected)
+24    8901030897542                  2         2   all found ✓
 25    8901764082405                  2         2   all found ✓
 26    8906010500337                  0         0   clean (no errors injected)
-27    8901063029255                  2         3   over-reported (3 found, 2 injected)
+27    8901063029255                  2         2   all found ✓
 28    8901491100519                  2         3   over-reported (3 found, 2 injected)
 29    8901262010016                  2         2   all found ✓
 30    8901262200196                  2         2   all found ✓
 31    8901764032707                  2         2   all found ✓
-32    8906010502294                  2         2   all found ✓
-33    8906010500078                  2         2   all found ✓
+32    8906010502294                  2         3   over-reported (3 found, 2 injected)
+33    8906010500078                  2         1   partial (1/2)
 34    8901491366052                  2         4   over-reported (4 found, 2 injected)
 35    8901719135248                  2         1   partial (1/2)
 36    8906010501570                  2         2   all found ✓
@@ -123,22 +114,23 @@ SPELLING ERROR DETECTION STATS
 41    8901030921797                  2         2   all found ✓
 42    8901719135118                  2         1   partial (1/2)
 43    3948764061257                  2         1   partial (1/2)
-44    89080153                       2         0   MISSED ALL
+44    89080153                       2         4   over-reported (4 found, 2 injected)
 45    8901764032905                  2         2   all found ✓
 46    8904272600291                  2         2   all found ✓
-47    8901764092305                  2         2   all found ✓
-48    8901595862962                  2         3   over-reported (3 found, 2 injected)
+47    8901764092305                  2         3   over-reported (3 found, 2 injected)
+48    8901595862962                  2         5   over-reported (5 found, 2 injected)
 49    8901262260121                  2         1   partial (1/2)
 50    8901491361026                  2         7   over-reported (7 found, 2 injected)
 -----------------------------------------------------------------
-TOTAL                               98       118
+TOTAL                               98       129
 
 Records processed              : 50
 Records with injected errors   : 49
 Total injected spelling errors : 98
-Total detected by Gemini       : 118
-Detection recall               : 120.4%
+Total detected by ChatGPT      : 129
+Detection recall               : 131.6%
 =================================================================
+
 
 =================================================================
 SPELLING ERROR DETECTION STATS
@@ -148,62 +140,62 @@ SPELLING ERROR DETECTION STATS
 -----------------------------------------------------------------
 1     8901719134845                  3         2   partial (2/3)
 2     8901719134852                  3         2   partial (2/3)
-3     8901063139329                  3         9   over-reported (9 found, 3 injected)
-4     8902080000227                  3         4   over-reported (4 found, 3 injected)
-5     8906010500764                  3         3   all found ✓
-6     8901063093522                  3         5   over-reported (5 found, 3 injected)
-7     8901058017687                  3         3   all found ✓
-8     8901063162914                  3         4   over-reported (4 found, 3 injected)
+3     8901063139329                  3         6   over-reported (6 found, 3 injected)
+4     8902080000227                  3         2   partial (2/3)
+5     8906010500764                  3         4   over-reported (4 found, 3 injected)
+6     8901063093522                  3         3   all found ✓
+7     8901058017687                  3         4   over-reported (4 found, 3 injected)
+8     8901063162914                  3         6   over-reported (6 found, 3 injected)
 9     8906010500559                  3         3   all found ✓
 10    8901764042911                  3         3   all found ✓
-11    8906010502232                  3         0   MISSED ALL
-12    8906010500900                  3         3   all found ✓
-13    8906010500023                  3         2   partial (2/3)
+11    8906010502232                  3         7   over-reported (7 found, 3 injected)
+12    8906010500900                  3         6   over-reported (6 found, 3 injected)
+13    8906010500023                  3         3   all found ✓
 14    8901764032912                  3         2   partial (2/3)
-15    7622202225512                  3         7   over-reported (7 found, 3 injected)
+15    7622202225512                  3         4   over-reported (4 found, 3 injected)
 16    8904043901015                  3         3   all found ✓
 17    8901058000290                  3         4   over-reported (4 found, 3 injected)
 18    3948764032912                  3         1   partial (1/3)
-19    8901063092853                  3         2   partial (2/3)
-20    8906017290040                  3         3   all found ✓
+19    8901063092853                  3         3   all found ✓
+20    8906017290040                  3         2   partial (2/3)
 21    8901719129988                  3         3   all found ✓
-22    8901030921667                  3         3   all found ✓
-23    8901764092206                  3         3   all found ✓
-24    8901030897542                  3         5   over-reported (5 found, 3 injected)
+22    8901030921667                  3         2   partial (2/3)
+23    8901764092206                  3         5   over-reported (5 found, 3 injected)
+24    8901030897542                  3         4   over-reported (4 found, 3 injected)
 25    8901764082405                  3         2   partial (2/3)
 26    8906010500337                  0         0   clean (no errors injected)
 27    8901063029255                  3         4   over-reported (4 found, 3 injected)
 28    8901491100519                  3         4   over-reported (4 found, 3 injected)
-29    8901262010016                  3         2   partial (2/3)
+29    8901262010016                  3         3   all found ✓
 30    8901262200196                  3         3   all found ✓
-31    8901764032707                  3         4   over-reported (4 found, 3 injected)
-32    8906010502294                  3         3   all found ✓
-33    8906010500078                  3         3   all found ✓
-34    8901491366052                  3         5   over-reported (5 found, 3 injected)
+31    8901764032707                  3         3   all found ✓
+32    8906010502294                  3         4   over-reported (4 found, 3 injected)
+33    8906010500078                  3         4   over-reported (4 found, 3 injected)
+34    8901491366052                  3         6   over-reported (6 found, 3 injected)
 35    8901719135248                  3         1   partial (1/3)
-36    8906010501570                  3         3   all found ✓
-37    8996001312506                  3         3   all found ✓
-38    8901058005233                  3         3   all found ✓
+36    8906010501570                  3         4   over-reported (4 found, 3 injected)
+37    8996001312506                  3         2   partial (2/3)
+38    8901058005233                  3         5   over-reported (5 found, 3 injected)
 39    8902080104581                  3         2   partial (2/3)
-40    8901063023901                  3         3   all found ✓
+40    8901063023901                  3         4   over-reported (4 found, 3 injected)
 41    8901030921797                  3         1   partial (1/3)
 42    8901719135118                  3         1   partial (1/3)
 43    3948764061257                  3         3   all found ✓
-44    89080153                       3         2   partial (2/3)
-45    8901764032905                  3         3   all found ✓
+44    89080153                       3         3   all found ✓
+45    8901764032905                  3         4   over-reported (4 found, 3 injected)
 46    8904272600291                  3         3   all found ✓
-47    8901764092305                  3         3   all found ✓
-48    8901595862962                  3         4   over-reported (4 found, 3 injected)
+47    8901764092305                  3         2   partial (2/3)
+48    8901595862962                  3         6   over-reported (6 found, 3 injected)
 49    8901262260121                  3         2   partial (2/3)
-50    8901491361026                  3         8   over-reported (8 found, 3 injected)
+50    8901491361026                  3         7   over-reported (7 found, 3 injected)
 -----------------------------------------------------------------
-TOTAL                              147       154
+TOTAL                              147       167
 
 Records processed              : 50
 Records with injected errors   : 49
 Total injected spelling errors : 147
-Total detected by Gemini       : 154
-Detection recall               : 104.8%
+Total detected by ChatGPT      : 167
+Detection recall               : 113.6%
 =================================================================
 
 ============================================================================
@@ -212,69 +204,69 @@ INS CODE MISMATCH DETECTION — OVERVIEW
 
 #     Product ID              Injected  Detected  Result
 ----------------------------------------------------------------------------
-1     8901719134845                  3         3  all caught ✓
+1     8901719134845                  3         0  MISSED ✗
 2     8901719134852                  0         0  no INS codes injected
-3     8901063139329                  7         7  all caught ✓
-4     8902080000227                  8         7  partial  (7/8)
-5     8906010500764                  5         5  all caught ✓
+3     8901063139329                  7         0  MISSED ✗
+4     8902080000227                  8         0  MISSED ✗
+5     8906010500764                  5         0  MISSED ✗
 6     8901063093522                  2         2  all caught ✓
-7     8901058017687                  4         4  all caught ✓
-8     8901063162914                  5         5  all caught ✓
+7     8901058017687                  4         0  MISSED ✗
+8     8901063162914                  5         1  partial  (1/5)
 9     8906010500559                  0         0  no INS codes injected
-10    8901764042911                  2         2  all caught ✓
-11    8906010502232                  5         5  all caught ✓
-12    8906010500900                  8         8  all caught ✓
+10    8901764042911                  2         0  MISSED ✗
+11    8906010502232                  5         1  partial  (1/5)
+12    8906010500900                  8         1  partial  (1/8)
 13    8906010500023                  0         0  no INS codes injected
-14    8901764032912                  4         4  all caught ✓
-15    7622202225512                  0         0  no INS codes injected
-16    8904043901015                  1         1  all caught ✓
-17    8901058000290                  8         7  partial  (7/8)
+14    8901764032912                  4         0  MISSED ✗
+15    7622202225512                  0         1  no INS codes injected
+16    8904043901015                  1         0  MISSED ✗
+17    8901058000290                  8         0  MISSED ✗
 18    3948764032912                  0         0  no INS codes injected
-19    8901063092853                  3         3  all caught ✓
+19    8901063092853                  3         1  partial  (1/3)
 20    8906017290040                  0         0  no INS codes injected
-21    8901719129988                  3         3  all caught ✓
+21    8901719129988                  3         1  partial  (1/3)
 22    8901030921667                  4         0  MISSED ✗
 23    8901764092206                  4         0  MISSED ✗
-24    8901030897542                  4         0  MISSED ✗
+24    8901030897542                  4         1  partial  (1/4)
 25    8901764082405                  0         0  no INS codes injected
 26    8906010500337                  0         0  no INS codes injected
-27    8901063029255                  6         0  MISSED ✗
+27    8901063029255                  6         1  partial  (1/6)
 28    8901491100519                  4         0  MISSED ✗
 29    8901262010016                  0         0  no INS codes injected
-30    8901262200196                  1         0  MISSED ✗
+30    8901262200196                  1         1  all caught ✓
 31    8901764032707                  3         0  MISSED ✗
 32    8906010502294                  5         0  MISSED ✗
 33    8906010500078                  0         0  no INS codes injected
 34    8901491366052                  4         0  MISSED ✗
 35    8901719135248                  0         0  no INS codes injected
 36    8906010501570                  9         0  MISSED ✗
-37    8996001312506                  5         0  MISSED ✗
+37    8996001312506                  5         2  partial  (2/5)
 38    8901058005233                  1         0  MISSED ✗
 39    8902080104581                  3         0  MISSED ✗
-40    8901063023901                  3         0  MISSED ✗
+40    8901063023901                  3         1  partial  (1/3)
 41    8901030921797                  4         0  MISSED ✗
 42    8901719135118                  0         0  no INS codes injected
 43    3948764061257                  0         0  no INS codes injected
 44    89080153                       3         0  MISSED ✗
 45    8901764032905                  4         0  MISSED ✗
 46    8904272600291                  1         0  MISSED ✗
-47    8901764092305                  4         0  MISSED ✗
+47    8901764092305                  4         1  partial  (1/4)
 48    8901595862962                  5         0  MISSED ✗
 49    8901262260121                  0         0  no INS codes injected
-50    8901491361026                  5         0  MISSED ✗
+50    8901491361026                  5         1  partial  (1/5)
 ----------------------------------------------------------------------------
-                               TOTAL       150        66
+                               TOTAL       150        15
 
   Records processed                 : 50
   Records with injected INS errors  : 36
   Records with no INS injection     : 14
 
   Total injected INS mismatches     : 150
-  Total detected by Gemini          : 66
-  Fully caught (all errors found)   : 13
-  Partially caught                  : 2
-  Fully missed                      : 21
-  Detection recall                  : 44.0%
+  Total detected by OpenAI          : 15
+  Fully caught (all errors found)   : 2
+  Partially caught                  : 11
+  Fully missed                      : 23
+  Detection recall                  : 10.0%
 ============================================================================
 
 ========================================================================
@@ -283,63 +275,63 @@ FICTITIOUS COMPOUND DETECTION STATS
 
 #     Product ID             Injected Compound                 Detected  Result
 ------------------------------------------------------------------------
-1     8901719134845          propylated amylose succinate             1  CAUGHT ✓
+1     8901719134845          propylated amylose succinate             2  CAUGHT ✓
 2     8901719134852          polysorbate 85                           1  CAUGHT ✓
-3     8901063139329          potassium lactobionate                   1  CAUGHT ✓
-4     8902080000227          diammonium malonate                      1  CAUGHT ✓
-5     8906010500764          disodium gluconate                       1  CAUGHT ✓
+3     8901063139329          potassium lactobionate                   2  CAUGHT ✓
+4     8902080000227          diammonium malonate                      2  CAUGHT ✓
+5     8906010500764          disodium gluconate                       0  MISSED ✗
 6     8901063093522          carboxyethyl methylcellulose             2  CAUGHT ✓
 7     8901058017687          propylated amylopectin itaconate         1  CAUGHT ✓
-8     8901063162914          calcium myristoyl fumarate               1  CAUGHT ✓
-9     8906010500559          methyl glutaric acid                     1  CAUGHT ✓
-10    8901764042911          magnesium behenoyl succinate             1  CAUGHT ✓
+8     8901063162914          calcium myristoyl fumarate               2  CAUGHT ✓
+9     8906010500559          methyl glutaric acid                     0  MISSED ✗
+10    8901764042911          magnesium behenoyl succinate             2  CAUGHT ✓
 11    8906010502232          octenylated distarch itaconate           2  CAUGHT ✓
-12    8906010500900          magnesium lauroyl succinate              1  CAUGHT ✓
-13    8906010500023          dimethyl lauric acid                     1  CAUGHT ✓
-14    8901764032912          calcium isovalerate                      1  CAUGHT ✓
-15    7622202225512          carboxyethylethylcellulose               2  CAUGHT ✓
-16    8904043901015          methyl capric acid                       1  CAUGHT ✓
-17    8901058000290          fumaric acid esters of mono- ...         1  CAUGHT ✓
+12    8906010500900          magnesium lauroyl succinate              0  MISSED ✗
+13    8906010500023          dimethyl lauric acid                     0  MISSED ✗
+14    8901764032912          calcium isovalerate                      0  MISSED ✗
+15    7622202225512          carboxyethylethylcellulose               0  MISSED ✗
+16    8904043901015          methyl capric acid                       0  MISSED ✗
+17    8901058000290          fumaric acid esters of mono- ...         2  CAUGHT ✓
 18    3948764032912          —                                        0  not injected (skipped)
-19    8901063092853          polysorbate 25                           1  CAUGHT ✓
+19    8901063092853          polysorbate 25                           2  CAUGHT ✓
 20    8906017290040          polysorbate 85                           1  CAUGHT ✓
-21    8901719129988          phosphoethylpropylcellulose              1  CAUGHT ✓
-22    8901030921667          ammonium tartrate                        1  CAUGHT ✓
-23    8901764092206          gluconic acid esters of mono-...         1  CAUGHT ✓
+21    8901719129988          phosphoethylpropylcellulose              0  MISSED ✗
+22    8901030921667          ammonium tartrate                        0  MISSED ✗
+23    8901764092206          gluconic acid esters of mono-...         0  MISSED ✗
 24    8901030897542          diacetyl pyruvic acid                    1  CAUGHT ✓
 25    8901764082405          potassium palmitoyl succinate            1  CAUGHT ✓
 26    8906010500337          —                                        0  not injected (skipped)
-27    8901063029255          polysorbate 85                           1  CAUGHT ✓
-28    8901491100519          glutaric acid esters of mono-...         1  CAUGHT ✓
-29    8901262010016          sodium stearoyl citrate                  1  CAUGHT ✓
+27    8901063029255          polysorbate 85                           2  CAUGHT ✓
+28    8901491100519          glutaric acid esters of mono-...         0  MISSED ✗
+29    8901262010016          sodium stearoyl citrate                  0  MISSED ✗
 30    8901262200196          butyrylated tristarch adipate            1  CAUGHT ✓
-31    8901764032707          carboxymethylated amylopectin...         1  CAUGHT ✓
+31    8901764032707          carboxymethylated amylopectin...         0  MISSED ✗
 32    8906010502294          phosphorylated amylose maleate           1  CAUGHT ✓
-33    8906010500078          hydroxy fumaric acid                     1  CAUGHT ✓
-34    8901491366052          sodium lactobionate                      1  CAUGHT ✓
-35    8901719135248          potassium tartrate                       1  CAUGHT ✓
-36    8906010501570          ammonium oxalate                         1  CAUGHT ✓
-37    8996001312506          sodium behenoyl tartrate                 1  CAUGHT ✓
+33    8906010500078          hydroxy fumaric acid                     0  MISSED ✗
+34    8901491366052          sodium lactobionate                      0  MISSED ✗
+35    8901719135248          potassium tartrate                       0  MISSED ✗
+36    8906010501570          ammonium oxalate                         0  MISSED ✗
+37    8996001312506          sodium behenoyl tartrate                 0  MISSED ✗
 38    8901058005233          dipotassium fumarate                     1  CAUGHT ✓
 39    8902080104581          dipotassium malonate                     1  CAUGHT ✓
-40    8901063023901          potassium oleoyl tartrate                1  CAUGHT ✓
-41    8901030921797          trimagnesium fumarate                    1  CAUGHT ✓
+40    8901063023901          potassium oleoyl tartrate                2  CAUGHT ✓
+41    8901030921797          trimagnesium fumarate                    2  CAUGHT ✓
 42    8901719135118          —                                        0  not injected (skipped)
-43    3948764061257          dipotassium malonate                     1  CAUGHT ✓
+43    3948764061257          dipotassium malonate                     0  MISSED ✗
 44    89080153               ethyl succinic acid                      1  CAUGHT ✓
-45    8901764032905          magnesium oleoyl tartrate                1  CAUGHT ✓
+45    8901764032905          magnesium oleoyl tartrate                0  MISSED ✗
 46    8904272600291          octenylated amylopectin succi...         1  CAUGHT ✓
-47    8901764092305          ammonium succinate                       1  CAUGHT ✓
-48    8901595862962          carboxymethylated tristarch f...         1  CAUGHT ✓
+47    8901764092305          ammonium succinate                       0  MISSED ✗
+48    8901595862962          carboxymethylated tristarch f...         0  MISSED ✗
 49    8901262260121          sodium lactobionate                      1  CAUGHT ✓
 50    8901491361026          carboxymethylated distarch it...         1  CAUGHT ✓
 ------------------------------------------------------------------------
-TOTAL                                                         47 / 47
+TOTAL                                                         25 / 47
 
 Records processed                    : 50
 Records with injected compound       : 47
 Records skipped (not injected)       : 3
-Compounds caught by Gemini           : 47
-Compounds missed by Gemini           : 0
-Detection recall                     : 100.0%
+Compounds caught by OpenAI           : 25
+Compounds missed by OpenAI           : 22
+Detection recall                     : 53.2%
 ========================================================================

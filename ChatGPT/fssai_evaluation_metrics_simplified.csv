@@ -1,0 +1,6 @@
+Dataset,Detection Rate,Error Recall,Identification Accuracy,Critical Omission Rate
+1error_openai_reviewed,100.00%,100.00%,62.03%,0.00%
+2errors_openai_reviewed,97.96%,87.76%,72.88%,2.04%
+3errors_openai_reviewed,100.00%,86.39%,79.38%,0.00%
+fictitious_compounds_gemini_compound_reviewed,97.87%,97.87%,85.19%,2.13%
+ins_errors_gemini_ins_reviewed,94.44%,78.67%,98.33%,5.56%

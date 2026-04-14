@@ -1,0 +1,204 @@
+=================================================================
+SPELLING ERROR DETECTION STATS
+=================================================================
+
+#     Product ID              Injected  Detected Status
+-----------------------------------------------------------------
+1     8901719134845                  1         1   all found ✓
+2     8901719134852                  1         2   over-reported (2 found, 1 injected)
+3     8901063139329                  1         5   over-reported (5 found, 1 injected)
+4     8902080000227                  1         1   all found ✓
+5     8906010500764                  1         1   all found ✓
+6     8901063093522                  1         3   over-reported (3 found, 1 injected)
+7     8901058017687                  1         2   over-reported (2 found, 1 injected)
+8     8901063162914                  1         2   over-reported (2 found, 1 injected)
+9     8906010500559                  1         1   all found ✓
+10    8901764042911                  1         1   all found ✓
+11    8906010502232                  1         1   all found ✓
+12    8906010500900                  1         1   all found ✓
+13    8906010500023                  1         1   all found ✓
+14    8901764032912                  1         1   all found ✓
+15    7622202225512                  1         4   over-reported (4 found, 1 injected)
+16    8904043901015                  1         1   all found ✓
+17    8901058000290                  1         2   over-reported (2 found, 1 injected)
+18    3948764032912                  1         1   all found ✓
+19    8901063092853                  1         2   over-reported (2 found, 1 injected)
+20    8906017290040                  1         1   all found ✓
+21    8901719129988                  1         1   all found ✓
+22    8901030921667                  1         1   all found ✓
+23    8901764092206                  1         1   all found ✓
+24    8901030897542                  1         3   over-reported (3 found, 1 injected)
+25    8901764082405                  1         1   all found ✓
+26    8906010500337                  0         0   clean (no errors injected)
+27    8901063029255                  1         2   over-reported (2 found, 1 injected)
+28    8901491100519                  1         2   over-reported (2 found, 1 injected)
+29    8901262010016                  1         1   all found ✓
+30    8901262200196                  1         1   all found ✓
+31    8901764032707                  1         1   all found ✓
+32    8906010502294                  1         1   all found ✓
+33    8906010500078                  1         1   all found ✓
+34    8901491366052                  1         2   over-reported (2 found, 1 injected)
+35    8901719135248                  1         1   all found ✓
+36    8906010501570                  1         1   all found ✓
+37    8996001312506                  1         1   all found ✓
+38    8901058005233                  1         2   over-reported (2 found, 1 injected)
+39    8902080104581                  1         1   all found ✓
+40    8901063023901                  1         1   all found ✓
+41    8901030921797                  1         1   all found ✓
+42    8901719135118                  1         1   all found ✓
+43    3948764061257                  1         1   all found ✓
+44    89080153                       1         1   all found ✓
+45    8901764032905                  1         1   all found ✓
+46    8904272600291                  1         1   all found ✓
+47    8901764092305                  1         1   all found ✓
+48    8901595862962                  1         3   over-reported (3 found, 1 injected)
+49    8901262260121                  1         1   all found ✓
+50    8901491361026                  1         5   over-reported (5 found, 1 injected)
+-----------------------------------------------------------------
+TOTAL                               49        75
+
+Records processed              : 50
+Records with injected errors   : 49
+Total injected spelling errors : 49
+Total detected by ChatGPT      : 75
+Detection recall               : 153.1%
+=================================================================
+
+========================================================================
+FICTITIOUS COMPOUND DETECTION STATS
+========================================================================
+
+#     Product ID             Injected Compound                 Detected  Result
+------------------------------------------------------------------------
+1     8901719134845          propylated amylose succinate             2  CAUGHT ✓
+2     8901719134852          polysorbate 85                           1  CAUGHT ✓
+3     8901063139329          potassium lactobionate                   2  CAUGHT ✓
+4     8902080000227          diammonium malonate                      0  MISSED ✗
+5     8906010500764          disodium gluconate                       0  MISSED ✗
+6     8901063093522          carboxyethyl methylcellulose             3  CAUGHT ✓
+7     8901058017687          propylated amylopectin itaconate         1  CAUGHT ✓
+8     8901063162914          calcium myristoyl fumarate               2  CAUGHT ✓
+9     8906010500559          methyl glutaric acid                     0  MISSED ✗
+10    8901764042911          magnesium behenoyl succinate             1  CAUGHT ✓
+11    8906010502232          octenylated distarch itaconate           0  MISSED ✗
+12    8906010500900          magnesium lauroyl succinate              1  CAUGHT ✓
+13    8906010500023          dimethyl lauric acid                     1  CAUGHT ✓
+14    8901764032912          calcium isovalerate                      1  CAUGHT ✓
+15    7622202225512          carboxyethylethylcellulose               2  CAUGHT ✓
+16    8904043901015          methyl capric acid                       2  CAUGHT ✓
+17    8901058000290          fumaric acid esters of mono- ...         0  MISSED ✗
+18    3948764032912          —                                        0  not injected (skipped)
+19    8901063092853          polysorbate 25                           1  CAUGHT ✓
+20    8906017290040          polysorbate 85                           1  CAUGHT ✓
+21    8901719129988          phosphoethylpropylcellulose              1  CAUGHT ✓
+22    8901030921667          ammonium tartrate                        0  MISSED ✗
+23    8901764092206          gluconic acid esters of mono-...         0  MISSED ✗
+24    8901030897542          diacetyl pyruvic acid                    1  CAUGHT ✓
+25    8901764082405          potassium palmitoyl succinate            1  CAUGHT ✓
+26    8906010500337          —                                        0  not injected (skipped)
+27    8901063029255          polysorbate 85                           1  CAUGHT ✓
+28    8901491100519          glutaric acid esters of mono-...         0  MISSED ✗
+29    8901262010016          sodium stearoyl citrate                  0  MISSED ✗
+30    8901262200196          butyrylated tristarch adipate            1  CAUGHT ✓
+31    8901764032707          carboxymethylated amylopectin...         1  CAUGHT ✓
+32    8906010502294          phosphorylated amylose maleate           1  CAUGHT ✓
+33    8906010500078          hydroxy fumaric acid                     1  CAUGHT ✓
+34    8901491366052          sodium lactobionate                      1  CAUGHT ✓
+35    8901719135248          potassium tartrate                       0  MISSED ✗
+36    8906010501570          ammonium oxalate                         1  CAUGHT ✓
+37    8996001312506          sodium behenoyl tartrate                 0  MISSED ✗
+38    8901058005233          dipotassium fumarate                     1  CAUGHT ✓
+39    8902080104581          dipotassium malonate                     1  CAUGHT ✓
+40    8901063023901          potassium oleoyl tartrate                1  CAUGHT ✓
+41    8901030921797          trimagnesium fumarate                    1  CAUGHT ✓
+42    8901719135118          —                                        0  not injected (skipped)
+43    3948764061257          dipotassium malonate                     1  CAUGHT ✓
+44    89080153               ethyl succinic acid                      0  MISSED ✗
+45    8901764032905          magnesium oleoyl tartrate                0  MISSED ✗
+46    8904272600291          octenylated amylopectin succi...         0  MISSED ✗
+47    8901764092305          ammonium succinate                       0  MISSED ✗
+48    8901595862962          carboxymethylated tristarch f...         0  MISSED ✗
+49    8901262260121          sodium lactobionate                      1  CAUGHT ✓
+50    8901491361026          carboxymethylated distarch it...         0  MISSED ✗
+------------------------------------------------------------------------
+TOTAL                                                         30 / 47
+
+Records processed                    : 50
+Records with injected compound       : 47
+Records skipped (not injected)       : 3
+Compounds caught by OpenAI           : 30
+Compounds missed by OpenAI           : 17
+Detection recall                     : 63.8%
+========================================================================
+
+
+============================================================================
+INS CODE MISMATCH DETECTION — OVERVIEW
+============================================================================
+
+#     Product ID              Injected  Detected  Result
+----------------------------------------------------------------------------
+1     8901719134845                  3         0  MISSED ✗
+2     8901719134852                  0         0  no INS codes injected
+3     8901063139329                  7         0  MISSED ✗
+4     8902080000227                  8         0  MISSED ✗
+5     8906010500764                  5         1  partial  (1/5)
+6     8901063093522                  2         0  MISSED ✗
+7     8901058017687                  4         1  partial  (1/4)
+8     8901063162914                  5         1  partial  (1/5)
+9     8906010500559                  0         0  no INS codes injected
+10    8901764042911                  2         1  partial  (1/2)
+11    8906010502232                  5         0  MISSED ✗
+12    8906010500900                  8         0  MISSED ✗
+13    8906010500023                  0         0  no INS codes injected
+14    8901764032912                  4         1  partial  (1/4)
+15    7622202225512                  0         0  no INS codes injected
+16    8904043901015                  1         0  MISSED ✗
+17    8901058000290                  8         0  MISSED ✗
+18    3948764032912                  0         0  no INS codes injected
+19    8901063092853                  3         0  MISSED ✗
+20    8906017290040                  0         0  no INS codes injected
+21    8901719129988                  3         0  MISSED ✗
+22    8901030921667                  4         3  partial  (3/4)
+23    8901764092206                  4         0  MISSED ✗
+24    8901030897542                  4         2  partial  (2/4)
+25    8901764082405                  0         0  no INS codes injected
+26    8906010500337                  0         0  no INS codes injected
+27    8901063029255                  6         1  partial  (1/6)
+28    8901491100519                  4         0  MISSED ✗
+29    8901262010016                  0         0  no INS codes injected
+30    8901262200196                  1         0  MISSED ✗
+31    8901764032707                  3         1  partial  (1/3)
+32    8906010502294                  5         0  MISSED ✗
+33    8906010500078                  0         0  no INS codes injected
+34    8901491366052                  4         0  MISSED ✗
+35    8901719135248                  0         0  no INS codes injected
+36    8906010501570                  9         0  MISSED ✗
+37    8996001312506                  5         0  MISSED ✗
+38    8901058005233                  1         0  MISSED ✗
+39    8902080104581                  3         0  MISSED ✗
+40    8901063023901                  3         1  partial  (1/3)
+41    8901030921797                  4         1  partial  (1/4)
+42    8901719135118                  0         0  no INS codes injected
+43    3948764061257                  0         0  no INS codes injected
+44    89080153                       3         0  MISSED ✗
+45    8901764032905                  4         1  partial  (1/4)
+46    8904272600291                  1         0  MISSED ✗
+47    8901764092305                  4         1  partial  (1/4)
+48    8901595862962                  5         4  partial  (4/5)
+49    8901262260121                  0         0  no INS codes injected
+50    8901491361026                  5         0  MISSED ✗
+----------------------------------------------------------------------------
+                               TOTAL       150        20
+
+  Records processed                 : 50
+  Records with injected INS errors  : 36
+  Records with no INS injection     : 14
+
+  Total injected INS mismatches     : 150
+  Total detected by OpenAI          : 20
+  Fully caught (all errors found)   : 0
+  Partially caught                  : 14
+  Fully missed                      : 22
+  Detection recall                  : 13.3%
+============================================================================

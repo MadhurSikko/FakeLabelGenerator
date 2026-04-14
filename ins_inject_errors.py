@@ -2,25 +2,30 @@
 inject_ins_errors.py
 --------------------
 Takes a JSONL file of food-product records and produces one output JSONL
-where every INS code found in `raw_label_text` is replaced with a
-*different* valid INS code from the same functional category.
+where INS codes found in `raw_label_text` are replaced with codes from a
+*different* functional category, introducing detectable FSSAI violations.
+
+Error-injection strategy
+------------------------
+Case 1 – Named functional class outside the brackets
+  e.g. "emulsifier (471, 472e)"
+  → ALL codes inside are replaced with codes from a DIFFERENT family.
+    The label now claims e.g. "emulsifier (202, 211)" which violates FSSAI
+    Schedule V: those codes are preservatives, not emulsifiers.
+
+Case 2 – No named class outside the brackets (bare group or explicit INS/E prefix)
+  e.g. "contains (330, 331, 471)"  or  "INS 330, INS 471"
+  → Codes are replaced so that each code in the group comes from a
+    DIFFERENT family than its neighbour(s).  The resulting group therefore
+    mixes incompatible functional classes, which an LLM or compliance
+    checker should flag as anomalous.
+
+Both cases produce violations that are clearly detectable:
+  • A colour code inside a bracket labelled "preservative" is illegal.
+  • A group whose members span antioxidant / colour / mineral-salt families
+    with no functional-class label is suspicious / non-compliant.
 
 Only `raw_label_text` is modified. All other fields are untouched.
-
-Handles all real-world label formats observed in Indian food products:
-  INS 503(ii)            -- explicit INS prefix, with suffix
-  INS 472e               -- explicit INS prefix, letter suffix
-  (330, 331)             -- bare numbers, comma-separated
-  (322,471,472)          -- bare numbers, no spaces
-  (500i)                 -- parenthesised suffix (no brackets around suffix)
-  (150a&150d)            -- ampersand-separated
-  (500&412)              -- ampersand, no spaces
-  (330 & 331)            -- ampersand with spaces
-  [ 150c, 150d ]         -- square brackets
-  (452(1), 385)          -- mixed suffix styles
-  E260, E102             -- E-number prefix
-  (INS202)               -- INS prefix no space
-  (INS 627, INS 631)     -- multiple INS-prefixed codes in one group
 
 Two new keys are added to every record:
   "ins_code_found" : true  – at least one INS code detected & swapped
@@ -28,11 +33,14 @@ Two new keys are added to every record:
   "ins_changes"    : list of change descriptors (empty when false)
     {
       "original_code":    "503(ii)",
-      "replacement_code": "501",
+      "replacement_code": "202",
       "original_name":    "ammonium bicarbonate",
-      "replacement_name": "potassium carbonate / bicarbonate",
-      "category":         "mineral salt",
-      "char_index":       114
+      "replacement_name": "potassium sorbate",
+      "original_category":  "mineral salt",
+      "injected_category":  "preservative",
+      "violation":          "category_mismatch",
+      "violation_detail":   "label claims mineral salt but code belongs to preservative",
+      "char_index":         114
     }
 
 Usage:
@@ -369,9 +377,43 @@ def find_ins_tokens(text: str) -> list:
 # ---------------------------------------------------------------------------
 
 
-def replacement_for(norm_key: str, rng: random.Random) -> tuple | None:
+def replacement_from_different_family(
+    norm_key: str,
+    rng: "random.Random",
+    exclude_categories: "set | None" = None,
+) -> "tuple | None":
     """
-    Pick a replacement code from the same functional category.
+    Pick a replacement code from a DIFFERENT functional category than norm_key.
+
+    exclude_categories — additional families to avoid (used when building a
+    group whose members each come from a distinct family).
+
+    Returns (new_code, new_name, orig_primary_cat, injected_cat) or None.
+    """
+    if norm_key not in INS_DB:
+        return None
+    _, orig_categories = INS_DB[norm_key]
+    orig_cat_set = set(orig_categories)
+    forbidden = orig_cat_set | (exclude_categories or set())
+
+    available_cats = [c for c in CATEGORY_TO_CODES if c not in forbidden]
+    rng.shuffle(available_cats)
+
+    for cat in available_cats:
+        candidates = CATEGORY_TO_CODES[cat]
+        if candidates:
+            new_code = rng.choice(candidates)
+            new_name, _ = INS_DB[new_code]
+            orig_cat = next(iter(orig_categories))
+            return new_code, new_name, orig_cat, cat
+
+    return None
+
+
+# Legacy same-family helper retained for reference / unit tests
+def replacement_for(norm_key: str, rng: "random.Random") -> "tuple | None":
+    """
+    (Legacy) Pick a replacement from the SAME functional category.
     Returns (new_code, new_name, category) or None.
     """
     if norm_key not in INS_DB:
@@ -393,39 +435,238 @@ def replacement_for(norm_key: str, rng: random.Random) -> tuple | None:
 # ---------------------------------------------------------------------------
 
 
+# ---------------------------------------------------------------------------
+# Group detection — identify bracket groups and their declared functional class
+# ---------------------------------------------------------------------------
+
+# Maps canonical class-title keyword to its INS family name in CATEGORY_TO_CODES
+_TITLE_TO_FAMILY = {
+    "colour": "colour",
+    "color": "colour",
+    "preservative": "preservative",
+    "antioxidant": "antioxidant",
+    "emulsifier": "emulsifier",
+    "stabiliser": "thickener",
+    "stabilizer": "thickener",
+    "thickener": "thickener",
+    "sequestrant": "sequestrant",
+    "acidity regulator": "acidity regulator",
+    "raising agent": "mineral salt",
+    "anti-caking agent": "anti-caking agent",
+    "anticaking agent": "anti-caking agent",
+    "anti caking agent": "anti-caking agent",
+    "flavour enhancer": "flavour enhancer",
+    "flavor enhancer": "flavour enhancer",
+    "humectant": "sweetener",
+    "sweetener": "sweetener",
+    "flour treatment agent": "flour treatment agent",
+    "firming agent": "mineral salt",
+    "bleaching agent": "flour treatment agent",
+    "sequesterant": "sequestrant",
+}
+
+_CLASS_TITLE_CAPTURE = re.compile(
+    r"\b(colour|color|preservative|antioxidant|emulsifier|"
+    r"stabilisers?|stabilizers?|thickeners?|sequestrants?|"
+    r"acidity\s+regulator|raising\s+agent|anti.?caking(?:\s+agent)?|"
+    r"anticaking(?:\s+agent)?|flavou?r\s+enhancer|humectant|sweeteners?|"
+    r"flour\s+treatment(?:\s+agent)?|firming\s+agent|bleaching\s+agent|"
+    r"sequesterants?)\b",
+    re.IGNORECASE,
+)
+
+
+def _declared_family_before(text: str, group_start: int) -> str | None:
+    """
+    Return the INS-DB family name if a functional-class title appears within
+    60 characters before `group_start`, otherwise None.
+    """
+    context = text[max(0, group_start - 60) : group_start]
+    m = _CLASS_TITLE_CAPTURE.search(context)
+    if not m:
+        return None
+    keyword = re.sub(r"\s+", " ", m.group(1).lower().rstrip("s"))
+    return _TITLE_TO_FAMILY.get(keyword)
+
+
+def _group_spans(text: str) -> list:
+    """
+    Return list of (group_start, group_end, [token_positions]) for every
+    bracket group detected by _BARE_GROUP.  token_positions are
+    (start, end, raw, norm) tuples for each code inside the group.
+    """
+    groups = []
+    for m in _BARE_GROUP.finditer(text):
+        group_content = m.group(1)
+        context_before = text[max(0, m.start() - 60) : m.start()]
+        has_class = bool(_CLASS_TITLES.search(context_before))
+        tokens_raw = re.findall(_CODE_PAT, group_content)
+        has_multiple = len(tokens_raw) >= 2
+        if not (has_class or has_multiple):
+            continue
+
+        token_positions = []
+        search_from = m.start(1)
+        for tok in tokens_raw:
+            pos = text.find(tok, search_from)
+            if pos != -1:
+                norm = normalise_code(tok)
+                token_positions.append((pos, pos + len(tok), tok, norm))
+                search_from = pos + len(tok)
+
+        if token_positions:
+            groups.append((m.start(), m.end(), token_positions))
+
+    return groups
+
+
+# ---------------------------------------------------------------------------
+# Core record processing — cross-family injection
+# ---------------------------------------------------------------------------
+
+
+def _violation_detail(
+    declared_family: str | None, orig_cat: str, injected_cat: str
+) -> str:
+    if declared_family:
+        return (
+            f"label declares '{declared_family}' but replacement code "
+            f"belongs to '{injected_cat}' (original was '{orig_cat}')"
+        )
+    return (
+        f"group mixes '{orig_cat}' and '{injected_cat}' — "
+        "different functional classes in one unlabelled group"
+    )
+
+
 def process_record(record: dict, rng: random.Random) -> dict:
+    """
+    Inject cross-family INS errors so mismatches are detectable by an LLM.
+
+    Strategy
+    --------
+    For each bracket group found in the text:
+
+      Case 1 – declared functional class in the 60 chars before the bracket
+        Replace EVERY code in the group with a code from a DIFFERENT family
+        (any family other than the declared one AND the original family).
+        → e.g. "emulsifier (471, 472e)"  becomes  "emulsifier (202, 211)"
+          Those are preservatives — a clear FSSAI Schedule V violation.
+
+      Case 2 – no declared class (bare group or multiple INS-prefixed codes)
+        Replace codes so that consecutive codes come from DIFFERENT families,
+        ensuring the group spans at least two distinct functional classes.
+        → e.g. "(330, 331, 471)"  becomes  "(330, 202, 471)"
+          Now the group contains an acidity regulator AND a preservative.
+
+    Explicit INS/E-prefixed codes that do NOT fall inside a detected group
+    are treated as Case 2 (single-token groups).
+    """
     rec = copy.deepcopy(record)
     rec.pop("ins_code_found", None)
     rec.pop("ins_changes", None)
 
     text = rec.get("raw_label_text", "")
-    tokens = find_ins_tokens(text)
 
-    # Filter to only tokens we can actually replace
-    actionable = [
+    # Collect all tokens and which bracket group they belong to
+    groups = _group_spans(text)
+
+    # Build a set of positions already covered by a group
+    group_covered: dict[
+        int, tuple
+    ] = {}  # token_start -> (group_start, declared_family)
+    for g_start, g_end, tok_positions in groups:
+        decl = _declared_family_before(text, g_start)
+        for t_start, t_end, raw, norm in tok_positions:
+            group_covered[t_start] = (g_start, decl)
+
+    # Also gather explicit INS/E-prefix tokens not inside any group
+    all_tokens = find_ins_tokens(text)
+    lone_tokens = [
         (s, e, raw, norm)
-        for s, e, raw, norm in tokens
-        if replacement_for(norm, random.Random()) is not None
+        for s, e, raw, norm in all_tokens
+        if s not in group_covered and norm in INS_DB
     ]
 
-    if not actionable:
+    # -----------------------------------------------------------------------
+    # Build replacement plan: {token_start: (new_code, new_name, orig_cat, injected_cat)}
+    # -----------------------------------------------------------------------
+    plan: dict[int, tuple] = {}
+
+    # ---- Case 1 & 2: bracket groups ----
+    for g_start, g_end, tok_positions in groups:
+        decl = _declared_family_before(text, g_start)
+
+        if decl:
+            # Case 1 — replace ALL tokens with codes from a family != declared AND != original
+            for t_start, t_end, raw, norm in tok_positions:
+                if norm not in INS_DB:
+                    continue
+                result = replacement_from_different_family(
+                    norm,
+                    rng,
+                    exclude_categories={decl},  # must differ from declared label
+                )
+                if result:
+                    plan[t_start] = (
+                        result  # (new_code, new_name, orig_cat, injected_cat)
+                    )
+        else:
+            # Case 2 — ensure the group spans multiple families
+            used_cats: set[str] = set()
+            for idx, (t_start, t_end, raw, norm) in enumerate(tok_positions):
+                if norm not in INS_DB:
+                    continue
+                # First token: pick freely from a different family
+                # Subsequent tokens: also avoid families already used, to maximise diversity
+                result = replacement_from_different_family(
+                    norm,
+                    rng,
+                    exclude_categories=used_cats if idx > 0 else None,
+                )
+                if result:
+                    plan[t_start] = result
+                    used_cats.add(result[3])  # injected_cat
+
+    # ---- Lone explicit INS/E tokens (Case 2 – single token) ----
+    for s, e, raw, norm in lone_tokens:
+        if s in plan:
+            continue
+        result = replacement_from_different_family(norm, rng)
+        if result:
+            plan[s] = result
+
+    if not plan:
         rec["ins_code_found"] = False
         rec["ins_changes"] = []
         return rec
 
+    # -----------------------------------------------------------------------
+    # Apply substitutions right-to-left so offsets stay valid
+    # -----------------------------------------------------------------------
     changes = []
-    # Process right-to-left so earlier indices stay valid as text grows/shrinks
-    for start, end, raw, norm in reversed(actionable):
-        result = replacement_for(norm, rng)
-        if result is None:
+    sorted_positions = sorted(plan.keys(), reverse=True)
+
+    for t_start in sorted_positions:
+        new_code, new_name, orig_cat, injected_cat = plan[t_start]
+
+        # Find the raw token at this position
+        matching = [(s, e, raw, norm) for s, e, raw, norm in all_tokens if s == t_start]
+        if not matching:
+            # Also search group tokens
+            for _, _, tok_positions in groups:
+                for ts, te, raw, norm in tok_positions:
+                    if ts == t_start:
+                        matching = [(ts, te, raw, norm)]
+                        break
+        if not matching:
             continue
-        new_code, new_name, category = result
+
+        _, t_end, raw, norm = matching[0]
         orig_name, _ = INS_DB[norm]
 
         current_text = rec["raw_label_text"]
-        # Verify token is still at the expected position (offsets may have shifted)
-        # Search in a small window around the expected position
-        window_start = max(0, start - 5)
+        window_start = max(0, t_start - 5)
         actual_pos = current_text.find(raw, window_start)
         if actual_pos == -1:
             continue
@@ -434,14 +675,21 @@ def process_record(record: dict, rng: random.Random) -> dict:
             current_text[:actual_pos] + new_code + current_text[actual_pos + len(raw) :]
         )
 
+        # Determine declared family (for violation detail message)
+        group_info = group_covered.get(t_start)
+        decl = group_info[1] if group_info else None
+
         changes.insert(
             0,
-            {  # insert at front to keep left-to-right order
+            {
                 "original_code": norm,
                 "replacement_code": new_code,
                 "original_name": orig_name,
                 "replacement_name": new_name,
-                "category": category,
+                "original_category": orig_cat,
+                "injected_category": injected_cat,
+                "violation": "category_mismatch",
+                "violation_detail": _violation_detail(decl, orig_cat, injected_cat),
                 "char_index": actual_pos,
             },
         )
